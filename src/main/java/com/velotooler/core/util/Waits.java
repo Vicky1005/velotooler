@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Waiters {
+public class Waits {
     private final static long DEFAULT_TIME = 30;
 
     public static WebElement waitUntilElementDisplayed(WebDriver driver, long time, WebElement element) {

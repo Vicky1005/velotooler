@@ -1,13 +1,13 @@
-package com.velotooler.pages;
+package com.velotooler.pages.sidemenu;
 
+import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
-import static com.velotooler.core.util.Waiters.waitUntilElementDisplayed;
-
-public class ProfilePage extends AbstractPage {
+public class ProfilePage extends MainPage {
 
     @FindBy(xpath = "//input[@ng-model='profile.user.email']")
     private WebElement userEmail;

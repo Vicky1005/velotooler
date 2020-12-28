@@ -1,13 +1,14 @@
-package com.velotooler.pages;
+package com.velotooler.pages.bicycle.info;
 
+import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.velotooler.core.util.Waiters.waitUntilElementClickable;
-import static com.velotooler.core.util.Waiters.waitUntilElementDisplayed;
+import static com.velotooler.core.util.Waits.waitUntilElementClickable;
+import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
-public class BicycleInfoPage extends AbstractPage {
+public class BicycleInfoPage extends MainPage {
 
     @FindBy(xpath = "//div[@class='form-center']/descendant::h1")
     private WebElement bicycleName;
@@ -20,9 +21,6 @@ public class BicycleInfoPage extends AbstractPage {
 
     @FindBy(xpath = "//label[@data-ng-bind-html='bike.serialNumber | notSpecified']")
     private WebElement sn;
-
-    @FindBy(xpath = "//span[contains(text(), 'Bicycles')]/ancestor::a[@class='ui-sidebar-btn']")
-    private WebElement bicycles;
 
     public BicycleInfoPage(WebDriver driver) {
         super(driver);
@@ -42,11 +40,5 @@ public class BicycleInfoPage extends AbstractPage {
     public String getSnNumber() {
         waitUntilElementDisplayed(driver, sn);
         return sn.getText();
-    }
-
-    public DashboardPage returnToDashboard() {
-        waitUntilElementClickable(driver, bicycles);
-        bicycles.click();
-        return new DashboardPage(driver);
     }
 }

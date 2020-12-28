@@ -1,12 +1,13 @@
-package com.velotooler.pages;
+package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.velotooler.core.util.Waiters.waitUntilElementDisplayed;
+import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
-public class BicycleComponentsPage extends AbstractPage{
+public class BicycleComponentsPage extends MainPage {
 
     @FindBy(xpath = "//md-select[@ng-change='changeGroupset()']")
     private WebElement groupSetName;
@@ -20,8 +21,11 @@ public class BicycleComponentsPage extends AbstractPage{
     @FindBy(xpath = "//form[@name='addComponentForm']/descendant::button[@ng-click='submit(addComponentForm)']")
     private WebElement nextButton;
 
+    private BicyclePhotosPage bicyclePhotosPage;
+
     public BicycleComponentsPage(WebDriver driver) {
         super(driver);
+        bicyclePhotosPage = new BicyclePhotosPage(driver);
     }
 
     public BicyclePhotosPage addBicycleComponents() {
@@ -31,6 +35,6 @@ public class BicycleComponentsPage extends AbstractPage{
         groupSetNameParameter.click();
         waitUntilElementDisplayed(driver, frame);
         nextButton.click();
-        return new BicyclePhotosPage(driver);
+        return bicyclePhotosPage;
     }
 }

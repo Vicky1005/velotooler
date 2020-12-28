@@ -1,24 +1,27 @@
 package com.velotooler.steps;
 
-import com.velotooler.core.parser.XMLParser;
+import com.velotooler.core.parser.JsonParser;
+import com.velotooler.core.parser.Parser;
+import com.velotooler.model.Auth;
 import com.velotooler.pages.DashboardPage;
-import com.velotooler.pages.MainPage;
+import com.velotooler.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 
 public class LogIn {
 
     private final WebDriver driver;
-    private MainPage mainPage;
-    private XMLParser xmlParser = new XMLParser();
+    private HomePage mainPage;
+    private Parser parser;
 
     public LogIn(WebDriver driver) {
         this.driver = driver;
-        this.mainPage = new MainPage(driver);
+        this.mainPage = new HomePage(driver);
+        this.parser = new JsonParser();
     }
 
     public DashboardPage logIn() {
-        mainPage.goToLoginPage()
-                .logIn(xmlParser.parseLogin("email"), xmlParser.parseLogin("password"));
+        Auth auth = parser.get("logIn", Auth.class);
+        mainPage.goToLoginPage().logIn(auth.getEmail(), auth.getPassword());
         return new DashboardPage(driver);
     }
 }

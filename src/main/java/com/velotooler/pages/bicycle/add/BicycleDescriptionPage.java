@@ -1,12 +1,13 @@
-package com.velotooler.pages;
+package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.velotooler.core.util.Waiters.waitUntilElementClickable;
+import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 
-public class BicycleDescriptionPage extends AbstractPage {
+public class BicycleDescriptionPage extends MainPage {
 
     @FindBy(xpath = "//md-select[@name='wheelSize']")
     private WebElement wheelSize;
@@ -38,30 +39,45 @@ public class BicycleDescriptionPage extends AbstractPage {
     @FindBy(xpath = "//form[@name='addAdditionalDescBikeForm']/descendant::button[@type='submit']")
     private WebElement nextButton;
 
+    private BicycleComponentsPage bicycleComponentsPage;
 
     public BicycleDescriptionPage(WebDriver driver) {
         super(driver);
+        bicycleComponentsPage = new BicycleComponentsPage(driver);
     }
 
     public BicycleComponentsPage addBicycleDescription() {
-        waitUntilElementClickable(driver, wheelSize);
-        wheelSize.click();
-        waitUntilElementClickable(driver, wheelSizeParameter);
-        wheelSizeParameter.click();
-        waitUntilElementClickable(driver, frameMaterial);
-        frameMaterial.click();
-        waitUntilElementClickable(driver, frameMaterialParameter);
-        frameMaterialParameter.click();
-        waitUntilElementClickable(driver, frameSize);
-        frameSize.click();
-        waitUntilElementClickable(driver, frameSizeParameter);
-        frameSizeParameter.click();
+        selectWheelSize().selectFrameMaterial().selectFrameSizeParameter();
         selectButton.click();
         waitUntilElementClickable(driver, colorBrown);
         colorBrown.click();
         waitUntilElementClickable(driver, chooseButton);
         chooseButton.click();
         nextButton.click();
-        return new BicycleComponentsPage(driver);
+        return bicycleComponentsPage;
+    }
+
+    private BicycleDescriptionPage selectWheelSize() {
+        waitUntilElementClickable(driver, wheelSize);
+        wheelSize.click();
+        waitUntilElementClickable(driver, wheelSizeParameter);
+        wheelSizeParameter.click();
+        return this;
+    }
+
+    private BicycleDescriptionPage selectFrameMaterial() {
+        waitUntilElementClickable(driver, frameMaterial);
+        frameMaterial.click();
+        waitUntilElementClickable(driver, frameMaterialParameter);
+        frameMaterialParameter.click();
+        return this;
+    }
+
+    private BicycleDescriptionPage selectFrameSizeParameter() {
+        waitUntilElementClickable(driver, frameSize);
+        frameSize.click();
+        waitUntilElementClickable(driver, frameSizeParameter);
+        frameSizeParameter.click();
+        return this;
     }
 }

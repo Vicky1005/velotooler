@@ -1,25 +1,28 @@
 package com.velotooler.steps;
 
-import com.velotooler.core.parser.XMLParser;
-import com.velotooler.pages.BicycleInfoPage;
+import com.velotooler.core.parser.JsonParser;
+import com.velotooler.core.parser.Parser;
+import com.velotooler.model.Bicycle;
+import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import com.velotooler.pages.DashboardPage;
 
 public class BicycleCreation {
 
     private DashboardPage dashboardPage;
-    private XMLParser xmlParser;
+    private Parser parser;
 
     public BicycleCreation(DashboardPage dashboardPage) {
         this.dashboardPage = dashboardPage;
-        this.xmlParser = new XMLParser();
+        this.parser = new JsonParser();
     }
 
     public BicycleInfoPage createBicycle(String serialNumber) {
+        Bicycle bicycle = parser.get("bicycle", Bicycle.class);
         return dashboardPage.goToAddBikePage()
-                .addBike(serialNumber, xmlParser.parseBicycleData("brand"),
-                        xmlParser.parseBicycleData("model"),
-                        xmlParser.parseBicycleData("year"),
-                        xmlParser.parseBicycleData("location"))
+                .addBike(serialNumber, bicycle.getBrand(),
+                        bicycle.getModel(),
+                        bicycle.getYear(),
+                        bicycle.getLocation())
                 .addBicycleDescription()
                 .addBicycleComponents()
                 .goToBicycleReviewPage()
