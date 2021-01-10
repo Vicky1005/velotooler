@@ -1,6 +1,7 @@
 package com.velotooler.pages.sidemenu;
 
 import com.velotooler.pages.MainPage;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,8 +17,10 @@ public class ProfilePage extends MainPage {
         super(driver);
     }
 
+    @SneakyThrows
     public String getUserEmail() {
         waitUntilElementDisplayed(driver, 60, userEmail);
+        Thread.sleep(1000);
         return userEmail.getAttribute("value");
     }
 }

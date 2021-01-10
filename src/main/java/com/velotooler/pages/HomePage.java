@@ -17,8 +17,11 @@ public class HomePage extends MainPage {
     @FindBy(xpath = GOT_IT_BTN_XPATH)
     private WebElement gotItButton;
 
+    private LoginPage loginPage;
+
     public HomePage(WebDriver driver) {
         super(driver);
+        loginPage = new LoginPage(driver);
     }
 
     public LoginPage goToLoginPage() {
@@ -28,7 +31,7 @@ public class HomePage extends MainPage {
             gotItButton.click();
         }
         logInButton.click();
-        return new LoginPage(driver);
+        return loginPage;
     }
 
 }

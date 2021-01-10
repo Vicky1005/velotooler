@@ -1,13 +1,10 @@
 package com.velotooler.pages;
 
 import com.velotooler.pages.sidemenu.ProfilePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
@@ -34,24 +31,22 @@ public abstract class MainPage extends AbstractPage {
     }
 
     public ProfilePage goToProfile() {
-        WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.elementToBeClickable(profileMenu));
-        WebElement element = driver.findElement(By.xpath("//a[@data-sub-menu='profile']/parent::div"));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
+        action.moveToElement(profileMenu).build().perform();
         profileMenu.click();
-        wait.until(ExpectedConditions.elementToBeClickable(profile));
+        waitUntilElementDisplayed(driver, profile);
         profile.click();
         return new ProfilePage(driver);
     }
 
     public HomePage logOut() {
+        action.moveToElement(profileMenu).build().perform();
         profileMenu.click();
         logOut.click();
         return new HomePage(driver);
     }
 
     public DashboardPage returnToDashboard() {
+        driver.navigate().refresh();
         waitUntilElementDisplayed(driver, bicycles);
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].click()", bicycles);

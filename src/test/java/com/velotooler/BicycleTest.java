@@ -2,6 +2,7 @@ package com.velotooler;
 
 import com.velotooler.model.Bicycle;
 import com.velotooler.pages.DashboardPage;
+import com.velotooler.pages.FilterPage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import com.velotooler.steps.BicycleCreation;
 import org.junit.jupiter.api.Assertions;
@@ -27,8 +28,16 @@ public class BicycleTest extends BaseTest {
         BicycleInfoPage bicycleInfoPage = new BicycleCreation(dashboardPage)
                 .createBicycle(sn)
                 .duplicateBicycle();
-        String expectedBicycleName = bicycle.getBrand() + " " + bicycle.getModel();
+        String expectedBicycleName = bicycle.getBrand() + " " + bicycle.getModel().toUpperCase();
         Assertions.assertEquals(expectedBicycleName, bicycleInfoPage.getBicycleName());
+    }
+
+    @Test
+    public void bicycleIsDeleted() {
+        String sn = generateSn();
+        DashboardPage dashboard = new BicycleCreation(dashboardPage)
+                .createBicycle(sn).returnToDashboard().deleteBicycleBySn(sn);
+        Assertions.assertTrue(dashboard.isParticularBicycleExist(sn));
     }
 
     @Test
@@ -36,4 +45,28 @@ public class BicycleTest extends BaseTest {
         DashboardPage dashboardPage = new DashboardPage(driver).deleteAllBicycles();
         Assertions.assertFalse(dashboardPage.lastBicycleIsDisplayed());
     }
+
+    @Test
+    public void statusIsInUse() {
+        String sn = generateSn();
+        FilterPage filterPage = new BicycleCreation(dashboardPage)
+                .createBicycle(sn)
+                .duplicateBicycle()
+                .returnToDashboard()
+                .goToFilterPage()
+                .setStatusFilter();
+        Assertions.assertTrue(filterPage.isStatusInUse());
+    }
+
+    @Test
+    public void isFilteredBySn() {
+        String sn = generateSn();
+        FilterPage filterPage = new BicycleCreation(dashboardPage)
+                .createBicycle(sn)
+                .returnToDashboard()
+                .goToFilterPage()
+                .setSerialNumber(sn);
+        Assertions.assertTrue(filterPage.isFilterAppliedBySerialNumber(sn));
+    }
 }
+

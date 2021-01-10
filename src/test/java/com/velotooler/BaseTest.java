@@ -1,6 +1,6 @@
 package com.velotooler;
 
-import com.velotooler.core.driver.BrowserType;
+import com.velotooler.core.driver.DriverType;
 import com.velotooler.core.driver.DriverFactory;
 import com.velotooler.core.parser.JsonParser;
 import com.velotooler.core.parser.Parser;
@@ -22,7 +22,7 @@ public abstract class BaseTest {
 
     @BeforeEach
     public void logIn() {
-        driver = DriverFactory.init(BrowserType.CHROME);
+        driver = DriverFactory.init(DriverType.CHROME);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://pilot.velotooler.com/");
@@ -33,7 +33,6 @@ public abstract class BaseTest {
     public void LogOut() {
         dashboardPage.logOut();
         driver.close();
-        driver.quit();
+        //driver.quit();
     }
-
 }

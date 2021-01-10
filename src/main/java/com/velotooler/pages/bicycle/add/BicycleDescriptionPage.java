@@ -1,6 +1,7 @@
 package com.velotooler.pages.bicycle.add;
 
 import com.velotooler.pages.MainPage;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,6 +47,7 @@ public class BicycleDescriptionPage extends MainPage {
         bicycleComponentsPage = new BicycleComponentsPage(driver);
     }
 
+    @SneakyThrows
     public BicycleComponentsPage addBicycleDescription() {
         selectWheelSize().selectFrameMaterial().selectFrameSizeParameter();
         selectButton.click();
@@ -53,7 +55,8 @@ public class BicycleDescriptionPage extends MainPage {
         colorBrown.click();
         waitUntilElementClickable(driver, chooseButton);
         chooseButton.click();
-        nextButton.click();
+        Thread.sleep(1000);
+        jse.executeScript("arguments[0].click()", nextButton);
         return bicycleComponentsPage;
     }
 

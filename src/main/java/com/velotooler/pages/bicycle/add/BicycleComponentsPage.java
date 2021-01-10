@@ -30,9 +30,9 @@ public class BicycleComponentsPage extends MainPage {
 
     public BicyclePhotosPage addBicycleComponents() {
         waitUntilElementDisplayed(driver, groupSetName);
-        groupSetName.click();
+        jse.executeScript("arguments[0].click()", groupSetName);
         waitUntilElementDisplayed(driver, groupSetNameParameter);
-        groupSetNameParameter.click();
+        jse.executeScript("arguments[0].click()", groupSetNameParameter);
         waitUntilElementDisplayed(driver, frame);
         nextButton.click();
         return bicyclePhotosPage;

@@ -39,6 +39,7 @@ public class BicycleInfoPage extends MainPage {
 
     public String getSnNumber() {
         waitUntilElementDisplayed(driver, sn);
+        jse.executeScript("arguments[0].style.border='3px solid red'", sn);
         return sn.getText();
     }
 }

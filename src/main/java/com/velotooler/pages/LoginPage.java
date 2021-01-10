@@ -18,14 +18,17 @@ public class LoginPage extends MainPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement logInButton;
 
+    private DashboardPage dashboardPage;
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        dashboardPage = new DashboardPage(driver);
     }
 
     public DashboardPage logIn(String userEmail, String userPassword) {
         email.sendKeys(userEmail);
         password.sendKeys(userPassword);
         logInButton.click();
-        return new DashboardPage(driver);
+        return dashboardPage;
     }
 }

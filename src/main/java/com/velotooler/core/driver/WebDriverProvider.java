@@ -2,7 +2,7 @@ package com.velotooler.core.driver;
 
 import org.openqa.selenium.WebDriver;
 
-public interface WebdriverProvider {
+public interface WebDriverProvider {
 
-    WebDriver createWebdriver();
+    WebDriver createWebDriver();
 }
