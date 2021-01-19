@@ -7,7 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static com.velotooler.core.util.Waits.*;
+import static com.velotooler.core.util.Waits.waitUntilElementClickable;
+import static com.velotooler.core.util.Waits.waitUntilElementsDisplayed;
 
 public class FilterPage extends MainPage {
 
@@ -46,6 +47,7 @@ public class FilterPage extends MainPage {
                 return false;
             }
         }
+
         return true;
     }
 

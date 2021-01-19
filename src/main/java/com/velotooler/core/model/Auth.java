@@ -1,4 +1,4 @@
-package com.velotooler.model;
+package com.velotooler.core.model;
 
 import lombok.Data;
 import lombok.ToString;
@@ -6,6 +6,6 @@ import lombok.ToString;
 @Data
 @ToString
 public class Auth {
-    private String email;
+    private String username;
     private String password;
 }

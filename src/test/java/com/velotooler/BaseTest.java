@@ -1,7 +1,7 @@
 package com.velotooler;
 
-import com.velotooler.core.driver.DriverType;
 import com.velotooler.core.driver.DriverFactory;
+import com.velotooler.core.driver.DriverType;
 import com.velotooler.core.parser.JsonParser;
 import com.velotooler.core.parser.Parser;
 import com.velotooler.pages.DashboardPage;

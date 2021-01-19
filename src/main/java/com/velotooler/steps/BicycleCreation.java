@@ -1,10 +1,10 @@
 package com.velotooler.steps;
 
+import com.velotooler.core.model.Bicycle;
 import com.velotooler.core.parser.JsonParser;
 import com.velotooler.core.parser.Parser;
-import com.velotooler.model.Bicycle;
-import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import com.velotooler.pages.DashboardPage;
+import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 
 public class BicycleCreation {
 

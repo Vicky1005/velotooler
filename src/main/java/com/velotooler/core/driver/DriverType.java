@@ -5,5 +5,4 @@ public enum DriverType {
     FIREFOX,
     CHROME_GRID,
     FIREFOX_GRID;
-
 }

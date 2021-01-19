@@ -1,0 +1,129 @@
+{
+  "colors": [
+    "white",
+    "red",
+    "yellow"
+  ],
+  "components": [
+    {
+      "name": "Shifters",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Front Brake",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Rear Brake",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Front Derailleur",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Rear Derailleur",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Bottom Bracket",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Crankset",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Chain",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    },
+    {
+      "name": "Cassette",
+      "brand": "Sram",
+      "model": "Red22",
+      "condition": {
+        "rate": 1
+      },
+      "certified": false
+    }
+  ],
+  "fixLocation": {
+    "address": "1 Hamden Park Drive, Hamden, CT 06517, USA",
+    "placeId": "ChIJG-ggPI_Z54kRj_IKOSiE0XQ",
+    "longitude": -72.9322911,
+    "latitude": 41.3403902,
+    "googleAddress": "1 Hamden Park Dr, Hamden, CT 06517, USA",
+    "country": "United States",
+    "city": "Hamden",
+    "county": "New Haven County",
+    "state": "Connecticut",
+    "street": "Hamden Park Drive",
+    "building": "1",
+    "zip": "06517",
+    "apartment": "1",
+    "bounds": {
+      "south": 41.33924716970851,
+      "west": -72.93364368029151,
+      "north": 41.34194513029151,
+      "east": -72.9309457197085
+    }
+  },
+  "serialNumber": "EDRTHBYGJVR",
+  "type": "Road",
+  "model": "x15",
+  "year": "2000",
+  "make": "Fabweld",
+  "wheelSize": {
+    "inch": "",
+    "iso": "622 mm",
+    "bicycleStandard": "700c"
+  },
+  "frameMaterial": "Steel",
+  "frameSize": "48cm",
+  "frameCondition": {
+    "condition": {
+      "rate": 1
+    }
+  },
+  "images": []
+}

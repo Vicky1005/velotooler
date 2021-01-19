@@ -9,7 +9,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 
 public class FireFoxRemoteGridProvider implements WebDriverProvider {
-
     @SneakyThrows
     public WebDriver createWebDriver() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();

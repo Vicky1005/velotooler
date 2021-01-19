@@ -14,14 +14,13 @@ public class JsonParser implements Parser {
         this.objectMapper = new ObjectMapper();
     }
 
-
     @Override
     public <T> T get(String path, Class<T> clazz) {
         File file = new File(String.format("src/main/resources/%s.json", path));
         try {
             return objectMapper.readValue(file, clazz);
         } catch (IOException e) {
-            throw new ReadingFromFileException();
+            throw new ReadingFromFileException(e);
         }
     }
 }

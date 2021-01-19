@@ -1,4 +1,4 @@
-package com.velotooler.model;
+package com.velotooler.core.model;
 
 import lombok.Data;
 import lombok.ToString;
