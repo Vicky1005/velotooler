@@ -7,7 +7,6 @@
     <groupId>com.velotooler</groupId>
     <artifactId>velotooler</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -102,11 +101,6 @@
             <artifactId>logback-core</artifactId>
             <version>${logback}</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.2.0-M1</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -125,17 +119,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>1.2.0-M1</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
-                    <groups>smoke</groups>
-                    <groups>regression</groups>
-                    <groups>test</groups>
+                    <groups>test, smoke, regression</groups>
                     <properties>
                         <configurationParameters>
                             junit.jupiter.execution.parallel.enabled=true
