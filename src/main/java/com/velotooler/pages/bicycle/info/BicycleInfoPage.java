@@ -1,13 +1,14 @@
 package com.velotooler.pages.bicycle.info;
 
 import com.velotooler.pages.MainPage;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
-
+@Slf4j
 public class BicycleInfoPage extends MainPage {
 
     @FindBy(xpath = "//div[@class='form-center']/descendant::h1")
@@ -34,6 +35,7 @@ public class BicycleInfoPage extends MainPage {
     public BicycleInfoPage duplicateBicycle() {
         duplicateBicycleButton.click();
         yesButton.click();
+        log.info("Bicycle is duplicated");
         return this;
     }
 

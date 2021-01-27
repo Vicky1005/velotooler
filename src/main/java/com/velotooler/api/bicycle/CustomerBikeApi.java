@@ -5,8 +5,9 @@ import com.velotooler.api.util.RequestSpec;
 import com.velotooler.core.parser.JsonParser;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
-
+@Slf4j
 public class CustomerBikeApi {
 
     private RequestSpecification requestSpecification = RequestSpec.getInstance();
@@ -20,5 +21,6 @@ public class CustomerBikeApi {
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_OK);
+        log.info("Bicycle with serial number " + sn + " via api is created");
     }
 }

@@ -5,7 +5,9 @@ import com.velotooler.core.parser.JsonParser;
 import com.velotooler.core.parser.Parser;
 import com.velotooler.pages.DashboardPage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class BicycleCreation {
 
     private DashboardPage dashboardPage;
@@ -18,7 +20,7 @@ public class BicycleCreation {
 
     public BicycleInfoPage createBicycle(String serialNumber) {
         Bicycle bicycle = parser.get("bicycle", Bicycle.class);
-        return dashboardPage.goToAddBikePage()
+        BicycleInfoPage bicycleInfoPage = dashboardPage.goToAddBikePage()
                 .addBike(serialNumber, bicycle.getBrand(),
                         bicycle.getModel(),
                         bicycle.getYear(),
@@ -28,5 +30,8 @@ public class BicycleCreation {
                 .goToBicycleReviewPage()
                 .goToBicycleAgreementPages()
                 .agree();
+
+        log.info("Bicycle with serial number " + serialNumber + " is created");
+        return bicycleInfoPage;
     }
 }
