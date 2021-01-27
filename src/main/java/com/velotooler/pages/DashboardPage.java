@@ -2,6 +2,7 @@ package com.velotooler.pages;
 
 import com.velotooler.pages.bicycle.add.AddBikePage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
+@Slf4j
 public class DashboardPage extends MainPage {
 
     private static final String LAST_BICYCLE_XPATH = "//div[@id='bike-list-item-0']";
@@ -70,6 +72,7 @@ public class DashboardPage extends MainPage {
             waitUntilElementDisplayed(driver, 60, toast);
             driver.navigate().refresh();
         }
+        log.info("All bicycles are deleted");
         return this;
     }
 
@@ -84,6 +87,7 @@ public class DashboardPage extends MainPage {
         WebElement menuOfParticularBicycle = driver.findElement(By.xpath(String.format(BICYCLE_MENU_BY_SN_XPATH, sn)));
         waitUntilElementDisplayed(driver, menuOfParticularBicycle);
         menuOfParticularBicycle.click();
+        log.info("Bicycle with " + sn + " is deleted");
         return recycle();
     }
 

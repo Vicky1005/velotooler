@@ -2,10 +2,12 @@ package com.velotooler.api.bicycle.request;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @JsonAutoDetect
+@ToString
 @Data
 public class BikeRequest {
     private List<String> colors;

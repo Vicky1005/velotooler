@@ -1,6 +1,7 @@
 package com.velotooler.pages.bicycle.add;
 
 import com.velotooler.pages.MainPage;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
+@Slf4j
 public class AddBikePage extends MainPage {
 
     private final static String LOCATION_ITEM_AUTOCOMPLETE_XPATH = "//div[contains(text(), '%s')]/ancestor::li";
@@ -56,8 +58,11 @@ public class AddBikePage extends MainPage {
         this.model.click();
         action.keyDown(Keys.SHIFT).sendKeys(model).keyUp(Keys.SHIFT).build().perform();
         action.keyUp(this.model, Keys.SHIFT);
+        log.debug("Set model: " + model);
         this.releaseYear.sendKeys(releaseYear);
+        log.debug("Set release year: " + releaseYear);
         addLocation(bicycleLocation);
+        log.debug("Set location: " + bicycleLocation);
         nextButton.click();
         return bicycleDescriptionPage;
     }
@@ -65,6 +70,7 @@ public class AddBikePage extends MainPage {
     private AddBikePage addSn(String sn) {
         waitUntilElementDisplayed(driver, this.sn);
         this.sn.sendKeys(sn);
+        log.debug("Set serial number: " + sn);
         return this;
     }
 
@@ -72,14 +78,16 @@ public class AddBikePage extends MainPage {
         waitUntilElementDisplayed(driver, typeContainer);
         typeContainer.click();
         typeParameter.click();
+        log.debug("Select type: Mountain");
         return this;
     }
 
     private AddBikePage addBrand(String brand) {
         this.brand.sendKeys(brand);
         this.brand.click();
-        waitUntilElementClickable(driver,  brandConfirm);
+        waitUntilElementClickable(driver, brandConfirm);
         jse.executeScript("arguments[0].click()", brandConfirm);
+        log.debug("Set brand: " + brand);
         return this;
     }
 

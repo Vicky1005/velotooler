@@ -9,6 +9,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 
 public class ChromeRemoteGridProvider implements WebDriverProvider {
+
+    private static WebDriver driver;
+
     @SneakyThrows
     public WebDriver createWebDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();

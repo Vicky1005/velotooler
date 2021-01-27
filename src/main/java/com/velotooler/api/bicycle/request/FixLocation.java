@@ -2,11 +2,12 @@ package com.velotooler.api.bicycle.request;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
+import lombok.ToString;
 
 @JsonAutoDetect
 @Data
+@ToString
 public class FixLocation {
-
     private String address;
     private String placeId;
     private double longitude;
@@ -21,5 +22,4 @@ public class FixLocation {
     private String zip;
     private String apartment;
     private Bounds bounds;
-
 }
