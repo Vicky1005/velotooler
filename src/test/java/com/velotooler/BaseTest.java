@@ -18,7 +18,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public abstract class BaseTest {
 
     protected DashboardPage dashboardPage;
-    protected Parser parser = new JsonParser();
 
     @BeforeEach
     public void logIn(TestInfo testInfo) {

@@ -1,5 +1,6 @@
 package com.velotooler.pages;
 
+import com.velotooler.core.element.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,10 +28,9 @@ public class HomePage extends MainPage {
     public LoginPage goToLoginPage() {
         waitUntilElementClickable(driver, 30, logInButton);
         if (!driver.findElements(By.xpath(GOT_IT_BTN_XPATH)).isEmpty()) {
-            waitUntilElementClickable(driver, 30, gotItButton);
-            gotItButton.click();
+            new Button(gotItButton).clickWithWaitClickable(driver);
         }
-        logInButton.click();
+        new Button(logInButton).click();
         return loginPage;
     }
 

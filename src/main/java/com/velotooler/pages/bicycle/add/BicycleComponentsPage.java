@@ -1,5 +1,7 @@
 package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.Select;
 import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,12 +31,9 @@ public class BicycleComponentsPage extends MainPage {
     }
 
     public BicyclePhotosPage addBicycleComponents() {
-        waitUntilElementDisplayed(driver, groupSetName);
-        jse.executeScript("arguments[0].click()", groupSetName);
-        waitUntilElementDisplayed(driver, groupSetNameParameter);
-        jse.executeScript("arguments[0].click()", groupSetNameParameter);
+        new Select(groupSetName).select(driver, jse, "Shimano XTR");
         waitUntilElementDisplayed(driver, frame);
-        nextButton.click();
+        new Button(nextButton).click();
         return bicyclePhotosPage;
     }
 }

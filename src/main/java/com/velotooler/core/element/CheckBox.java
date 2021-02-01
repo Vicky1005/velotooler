@@ -1,6 +1,9 @@
 package com.velotooler.core.element;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
 public class CheckBox extends HtmlElement {
 
@@ -12,19 +15,20 @@ public class CheckBox extends HtmlElement {
         getWrappedElement().click();
     }
 
-    public void check() {
-        if (!isChecked()) {
+    public void check(WebDriver driver) {
+        if (!isChecked(driver)) {
             toggle();
         }
     }
 
-    public void uncheck() {
-        if (isChecked()) {
+    public void uncheck(WebDriver driver) {
+        if (isChecked(driver)) {
             toggle();
         }
     }
 
-    public boolean isChecked() {
+    public boolean isChecked(WebDriver driver) {
+        waitUntilElementDisplayed(driver, getWrappedElement());
         return getWrappedElement().isSelected();
     }
 }

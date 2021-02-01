@@ -1,13 +1,12 @@
 package com.velotooler.pages;
 
+import com.velotooler.core.element.ClickableElement;
 import com.velotooler.pages.servicebooking.CreateRequestPage;
 import com.velotooler.pages.servicebooking.ServiceBookingsPage;
 import com.velotooler.pages.sidemenu.ProfilePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
 public abstract class MainPage extends AbstractPage {
 
@@ -37,10 +36,8 @@ public abstract class MainPage extends AbstractPage {
     }
 
     public ProfilePage goToProfile() {
-        action.moveToElement(profileMenu).build().perform();
-        profileMenu.click();
-        waitUntilElementDisplayed(driver, profile);
-        profile.click();
+        new ClickableElement(profileMenu).selectByMoving(action);
+        new ClickableElement(profile).clickWithWaitDisplayed(driver);
         return new ProfilePage(driver);
     }
 
@@ -54,19 +51,17 @@ public abstract class MainPage extends AbstractPage {
 
     public DashboardPage returnToDashboard() {
         driver.navigate().refresh();
-        waitUntilElementDisplayed(driver, bicycles);
-        jse.executeScript("arguments[0].click()", bicycles);
+        new ClickableElement(bicycles).clickWithJS(jse);
         return new DashboardPage(driver);
     }
 
     public CreateRequestPage goToCreateRequestPage() {
-        bookBicycleService.click();
+        new ClickableElement(bookBicycleService).click();
         return new CreateRequestPage(driver);
     }
 
     public ServiceBookingsPage goToServiceBookingsPage() {
-        action.moveToElement(serviceBookings).build().perform();
-        serviceBookings.click();
+        new ClickableElement(serviceBookings).selectByMoving(action);
         return new ServiceBookingsPage(driver);
     }
 }

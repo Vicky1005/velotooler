@@ -1,6 +1,7 @@
 package com.velotooler.core.element;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,9 +15,11 @@ public class Select extends HtmlElement {
         super(wrappedElement);
     }
 
-    public void select(WebDriver driver, String value) {
+    public void select(WebDriver driver, JavascriptExecutor jse,  String value) {
         waitUntilElementDisplayed(driver, getWrappedElement());
         getWrappedElement().click();
-        driver.findElement(By.xpath(String.format(XPATH_PARAMETER, value))).click();
+        WebElement element = driver.findElement(By.xpath(String.format(XPATH_PARAMETER, value)));
+        waitUntilElementDisplayed(driver, element);
+        jse.executeScript("arguments[0].click()", element);
     }
 }

@@ -1,12 +1,12 @@
 package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.CheckBox;
 import com.velotooler.pages.MainPage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
 public class BicycleAgreementPage extends MainPage {
 
@@ -24,9 +24,8 @@ public class BicycleAgreementPage extends MainPage {
     }
 
     public BicycleInfoPage agree() {
-        waitUntilElementDisplayed(driver, agreement);
-        agreement.click();
-        createBicycleButton.click();
+        new CheckBox(agreement).check(driver);
+        new Button(createBicycleButton).clickWithWaitDisplayed(driver);
         return bicycleInfoPage;
     }
 }

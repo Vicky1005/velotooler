@@ -13,8 +13,6 @@ import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 @Slf4j
 public class AddBikePage extends MainPage {
 
-    private final static String LOCATION_ITEM_AUTOCOMPLETE_XPATH = "//div[contains(text(), '%s')]/ancestor::li";
-
     @FindBy(xpath = "//input[@name='sn']")
     private WebElement sn;
 
@@ -67,7 +65,7 @@ public class AddBikePage extends MainPage {
     }
 
     private AddBikePage selectType() {
-        new Select(typeContainer).select(driver, "Mountain");
+        new Select(typeContainer).select(driver, jse, "Mountain");
         log.debug("Select type: Mountain");
         return this;
     }

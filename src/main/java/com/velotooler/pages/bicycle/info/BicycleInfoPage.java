@@ -1,5 +1,7 @@
 package com.velotooler.pages.bicycle.info;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.Input;
 import com.velotooler.pages.MainPage;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.velotooler.core.util.Waits.waitUntilElementClickable;
-import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
+
 @Slf4j
 public class BicycleInfoPage extends MainPage {
 
@@ -33,15 +35,15 @@ public class BicycleInfoPage extends MainPage {
     }
 
     public BicycleInfoPage duplicateBicycle() {
-        duplicateBicycleButton.click();
-        yesButton.click();
+        new Button(duplicateBicycleButton).click();
+        new Button(yesButton).click();
         log.info("Bicycle is duplicated");
         return this;
     }
 
     public String getSnNumber() {
-        waitUntilElementDisplayed(driver, sn);
-        jse.executeScript("arguments[0].style.border='3px solid red'", sn);
-        return sn.getText();
+        Input inputSerialNumber = new Input(sn);
+        inputSerialNumber.highlight(driver, jse);
+        return inputSerialNumber.getText();
     }
 }

@@ -8,14 +8,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
-public class ChromeRemoteGridProvider implements WebDriverProvider {
+import static com.velotooler.core.service.ReadProperties.getProperty;
 
-    private static WebDriver driver;
+public class ChromeRemoteGridProvider implements WebDriverProvider {
 
     @SneakyThrows
     public WebDriver createWebDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-        return new RemoteWebDriver(new URL(" http://192.168.100.23:4444/wd/hub"), chromeOptions);
+        return new RemoteWebDriver(new URL(getProperty("seleniumGrid", "hub")), chromeOptions);
     }
 }

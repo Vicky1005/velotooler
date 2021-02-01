@@ -1,5 +1,6 @@
 package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.core.element.Button;
 import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,7 @@ public class BicyclePhotosPage extends MainPage {
     }
 
     public BicycleReviewPage goToBicycleReviewPage() {
-        nextButton.click();
+        new Button(nextButton).click();
         return bicycleReviewPage;
     }
 }

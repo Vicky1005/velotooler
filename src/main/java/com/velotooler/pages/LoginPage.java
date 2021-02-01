@@ -1,5 +1,7 @@
 package com.velotooler.pages;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.Input;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,9 +28,9 @@ public class LoginPage extends MainPage {
     }
 
     public DashboardPage logIn(String userEmail, String userPassword) {
-        email.sendKeys(userEmail);
-        password.sendKeys(userPassword);
-        logInButton.click();
+        new Input(email).sendKeys(userEmail);
+        new Input(password).sendKeys(userPassword);
+        new Button(logInButton).click();
         return dashboardPage;
     }
 }

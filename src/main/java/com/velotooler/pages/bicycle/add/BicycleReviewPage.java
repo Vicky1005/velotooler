@@ -1,11 +1,10 @@
 package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.core.element.Button;
 import com.velotooler.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 
 public class BicycleReviewPage extends MainPage {
 
@@ -23,8 +22,7 @@ public class BicycleReviewPage extends MainPage {
     }
 
     public BicycleAgreementPage goToBicycleAgreementPages() {
-        waitUntilElementClickable(driver, continueButton);
-        continueButton.click();
+        new Button(continueButton).clickWithWaitClickable(driver);
         return bicycleAgreementPage;
     }
 }

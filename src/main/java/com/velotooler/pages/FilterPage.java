@@ -1,6 +1,7 @@
 package com.velotooler.pages;
 
-import org.openqa.selenium.Keys;
+import com.velotooler.core.element.ClickableElement;
+import com.velotooler.core.element.Input;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,8 +36,8 @@ public class FilterPage extends MainPage {
     }
 
     public FilterPage setStatusFilter() {
-        statusMenu.click();
-        inUseOption.click();
+        new ClickableElement(statusMenu).click();
+        new ClickableElement(inUseOption).click();
         return this;
     }
 
@@ -47,16 +48,13 @@ public class FilterPage extends MainPage {
                 return false;
             }
         }
-
         return true;
     }
 
     public FilterPage setSerialNumber(String sn) {
         String script = String.format("document.getElementsByName('sn')[0].setAttribute('value', '%s')", sn);
         jse.executeScript(script);
-        serialNumber.sendKeys(" ");
-        serialNumber.sendKeys(Keys.BACK_SPACE);
-        serialNumber.sendKeys(Keys.ENTER);
+        new Input(serialNumber).filterInput();
         return this;
     }
 

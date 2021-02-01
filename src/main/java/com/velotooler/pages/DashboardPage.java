@@ -1,15 +1,15 @@
 package com.velotooler.pages;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.ClickableElement;
 import com.velotooler.pages.bicycle.add.AddBikePage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.velotooler.core.util.Waits.waitUntilElementClickable;
 import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
 @Slf4j
@@ -55,14 +55,12 @@ public class DashboardPage extends MainPage {
     }
 
     public AddBikePage goToAddBikePage() {
-        waitUntilElementDisplayed(driver, addBikeButton);
-        addBikeButton.click();
+        new Button(addBikeButton).clickWithWaitDisplayed(driver);
         return addBikePage;
     }
 
     public BicycleInfoPage goToBicycleInfoPage() {
-        waitUntilElementDisplayed(driver, 60, lastBicycle);
-        lastBicycle.click();
+        new Button(lastBicycle).clickWithWaitDisplayed(driver);
         return bicycleInfoPage;
     }
 
@@ -78,15 +76,13 @@ public class DashboardPage extends MainPage {
 
     public DashboardPage deleteLastBicycle() {
         waitUntilElementDisplayed(driver, lastBicycle);
-        waitUntilElementClickable(driver, lastBicycleMenu);
-        lastBicycleMenu.click();
+        new ClickableElement(lastBicycleMenu).clickWithWaitClickable(driver);
         return recycle();
     }
 
     public DashboardPage deleteBicycleBySn(String sn) {
         WebElement menuOfParticularBicycle = driver.findElement(By.xpath(String.format(BICYCLE_MENU_BY_SN_XPATH, sn)));
-        waitUntilElementDisplayed(driver, menuOfParticularBicycle);
-        menuOfParticularBicycle.click();
+        new ClickableElement(menuOfParticularBicycle).clickWithWaitDisplayed(driver);
         log.info("Bicycle with " + sn + " is deleted");
         return recycle();
     }
@@ -100,19 +96,14 @@ public class DashboardPage extends MainPage {
     }
 
     public FilterPage goToFilterPage() {
-        waitUntilElementClickable(driver, filter);
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].click()", filter);
+        new ClickableElement(filter).clickWithJS(jse);
         return filterPage;
     }
 
     private DashboardPage recycle() {
-        waitUntilElementClickable(driver, changeStatus);
-        changeStatus.click();
-        waitUntilElementClickable(driver, recycled);
-        jse.executeScript("arguments[0].click()", recycled);
-        waitUntilElementClickable(driver, yesButton);
-        yesButton.click();
+        new ClickableElement(changeStatus).clickWithWaitClickable(driver);
+        new ClickableElement(recycled).clickWithJS(jse);
+        new Button(yesButton).clickWithWaitClickable(driver);
         return this;
     }
 }

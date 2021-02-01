@@ -4,9 +4,9 @@ import com.velotooler.api.auth.LoginApi;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
-public class RequestSpec {
+import static com.velotooler.core.service.ReadProperties.getProperty;
 
-    public final static String BASE_URL = "https://pilot.velotooler.com/api";
+public class RequestSpec {
 
     private static RequestSpecification requestSpecification;
 
@@ -15,7 +15,7 @@ public class RequestSpec {
         String token = new LoginApi().auth();
 
         return new RequestSpecBuilder()
-                .setBaseUri(BASE_URL)
+                .setBaseUri(getProperty("api", "baseUri"))
                 .setAccept("application/json")
                 .setContentType("application/json")
                 .addHeader("x-token", token)

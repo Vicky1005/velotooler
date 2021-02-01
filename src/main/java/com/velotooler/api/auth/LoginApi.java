@@ -9,6 +9,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 
+import static com.velotooler.core.service.ReadProperties.getProperty;
+
 @Slf4j
 public class LoginApi {
 
@@ -17,14 +19,14 @@ public class LoginApi {
         Auth auth = UserCreator.withCredentialsFromProperty();
 
         RequestSpecification requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://pilot.velotooler.com/api")
+                .setBaseUri(getProperty("api", "baseUri"))
                 .setContentType("application/json")
                 .build();
 
         ExtractableResponse<Response> response = RestAssured.given(requestSpecification)
                 .when()
                 .body(auth)
-                .post("/login")
+                .post(getProperty("api", "loginEndpoint"))
                 .then()
                 .extract();
 

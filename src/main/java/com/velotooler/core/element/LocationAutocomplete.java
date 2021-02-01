@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LocationAutocomplete extends Autocomplete {
+
     private static final String XPATH_PARAMETER = "//div[contains(text(), '%s')]/ancestor::li";
 
     public LocationAutocomplete(WebElement wrappedElement) {

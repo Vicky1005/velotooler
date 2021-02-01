@@ -20,7 +20,6 @@ public class JsonParser implements Parser {
     public <T> T get(String path, Class<T> clazz) {
         File file = new File(String.format("src/main/resources/%s.json", path));
         try {
-
             T result = objectMapper.readValue(file, clazz);
             log.trace("File " + path + "has parsed. Result: " + result.toString());
             return result;

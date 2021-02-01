@@ -1,32 +1,24 @@
 package com.velotooler.pages.bicycle.add;
 
+import com.velotooler.core.element.Button;
+import com.velotooler.core.element.ClickableElement;
+import com.velotooler.core.element.Select;
 import com.velotooler.pages.MainPage;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.velotooler.core.util.Waits.waitUntilElementClickable;
-
 public class BicycleDescriptionPage extends MainPage {
 
     @FindBy(xpath = "//md-select[@name='wheelSize']")
     private WebElement wheelSize;
 
-    @FindBy(xpath = "//div[contains(text(), '29\" / 622 mm / 700C')]/ancestor::md-option")
-    private WebElement wheelSizeParameter;
-
     @FindBy(xpath = "//md-select[@name='frameMaterial']")
     private WebElement frameMaterial;
 
-    @FindBy(xpath = "//div[contains(text(), 'Titanium')]/ancestor::md-option")
-    private WebElement frameMaterialParameter;
-
     @FindBy(xpath = "//md-select[@name='frameSize']")
     private WebElement frameSize;
-
-    @FindBy(xpath = "//div[contains(text(), 'XS')]/ancestor::md-option")
-    private WebElement frameSizeParameter;
 
     @FindBy(xpath = "//button[@class='show-chosen-color  md-button']")
     private WebElement selectButton;
@@ -50,37 +42,26 @@ public class BicycleDescriptionPage extends MainPage {
     @SneakyThrows
     public BicycleComponentsPage addBicycleDescription() {
         selectWheelSize().selectFrameMaterial().selectFrameSizeParameter();
-        selectButton.click();
-        waitUntilElementClickable(driver, colorBrown);
-        colorBrown.click();
-        waitUntilElementClickable(driver, chooseButton);
-        chooseButton.click();
+        new Button(selectButton).click();
+        new ClickableElement(colorBrown).clickWithWaitClickable(driver);
+        new Button(chooseButton).clickWithWaitClickable(driver);
         Thread.sleep(1000);
-        jse.executeScript("arguments[0].click()", nextButton);
+        new Button(nextButton).clickWithJS(jse);
         return bicycleComponentsPage;
     }
 
     private BicycleDescriptionPage selectWheelSize() {
-        waitUntilElementClickable(driver, wheelSize);
-        wheelSize.click();
-        waitUntilElementClickable(driver, wheelSizeParameter);
-        wheelSizeParameter.click();
+        new Select(wheelSize).select(driver, jse, "29\" / 622 mm / 700C");
         return this;
     }
 
     private BicycleDescriptionPage selectFrameMaterial() {
-        waitUntilElementClickable(driver, frameMaterial);
-        frameMaterial.click();
-        waitUntilElementClickable(driver, frameMaterialParameter);
-        frameMaterialParameter.click();
+        new Select(frameMaterial).select(driver, jse, "Titanium");
         return this;
     }
 
     private BicycleDescriptionPage selectFrameSizeParameter() {
-        waitUntilElementClickable(driver, frameSize);
-        frameSize.click();
-        waitUntilElementClickable(driver, frameSizeParameter);
-        frameSizeParameter.click();
+        new Select(frameSize).select(driver, jse, "XS");
         return this;
     }
 }

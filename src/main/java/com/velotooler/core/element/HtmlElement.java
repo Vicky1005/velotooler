@@ -1,8 +1,11 @@
 package com.velotooler.core.element;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
+
+import static com.velotooler.core.util.Waits.waitUntilElementDisplayed;
 
 public abstract class HtmlElement implements WebElement, WrapsElement {
 
@@ -102,4 +105,13 @@ public abstract class HtmlElement implements WebElement, WrapsElement {
         return wrappedElement.getScreenshotAs(outputType);
     }
 
+    public void highlight(WebDriver driver, JavascriptExecutor jse) {
+        waitUntilElementDisplayed(driver, wrappedElement);
+        jse.executeScript("arguments[0].style.border='3px solid red'", wrappedElement);
+    }
+
+    public void selectByMoving(Actions action) {
+        action.moveToElement(wrappedElement).build().perform();
+        wrappedElement.click();
+    }
 }

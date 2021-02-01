@@ -25,4 +25,10 @@ public class Input extends HtmlElement {
         action.keyDown(Keys.SHIFT).sendKeys(value).keyUp(Keys.SHIFT).build().perform();
         action.keyUp(getWrappedElement(), Keys.SHIFT);
     }
+
+    public void filterInput() {
+        getWrappedElement().sendKeys(" ");
+        getWrappedElement().sendKeys(Keys.BACK_SPACE);
+        getWrappedElement().sendKeys(Keys.ENTER);
+    }
 }

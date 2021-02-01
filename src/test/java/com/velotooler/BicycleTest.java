@@ -3,12 +3,10 @@ package com.velotooler;
 import com.velotooler.api.bicycle.CustomerBikeApi;
 import com.velotooler.api.bicycle.request.BikeRequest;
 import com.velotooler.core.driver.DriverFactory;
-import com.velotooler.core.model.Bicycle;
 import com.velotooler.core.parser.JsonParser;
 import com.velotooler.pages.DashboardPage;
 import com.velotooler.pages.FilterPage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
-import com.velotooler.pages.servicebooking.RequestPage;
 import com.velotooler.steps.BicycleCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -20,7 +18,6 @@ public class BicycleTest extends BaseTest {
 
     private CustomerBikeApi customerBikeApi = new CustomerBikeApi();
     private BikeRequest bicycleApiRequest = new JsonParser().get("customerBike", BikeRequest.class);
-    private Bicycle bicycle = new JsonParser().get("bicycle", Bicycle.class);
 
     @Test
     @Tag("smoke")
@@ -85,22 +82,6 @@ public class BicycleTest extends BaseTest {
                 .goToFilterPage()
                 .setSerialNumber(sn);
         Assertions.assertTrue(filterPage.isFilterAppliedBySerialNumber(sn));
-    }
-
-    @Test
-    @Tag("smoke")
-    public void serviceRequestIsCreated() {
-        String sn = generateSn();
-        customerBikeApi.createBicycle(sn);
-        String requestId = new DashboardPage(DriverFactory.get())
-                .goToCreateRequestPage()
-                .createRequest(bicycle.getLocation(), sn)
-                .waitLoadingInfo()
-                .getRequestId();
-        RequestPage requestPage = new RequestPage(DriverFactory.get());
-        String requestServiceName = requestPage.getServiceName().split("-")[0].toUpperCase().trim();
-        String serviceRequestName = requestPage.goToServiceBookingsPage().getServiceRequestName(requestId).trim();
-        Assertions.assertEquals(requestServiceName, serviceRequestName);
     }
 }
 

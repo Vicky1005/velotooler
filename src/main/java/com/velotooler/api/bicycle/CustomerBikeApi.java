@@ -7,6 +7,9 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
+
+import static com.velotooler.core.service.ReadProperties.getProperty;
+
 @Slf4j
 public class CustomerBikeApi {
 
@@ -17,7 +20,7 @@ public class CustomerBikeApi {
         bike.setSerialNumber(sn);
         RestAssured.given(requestSpecification)
                 .body(bike)
-                .post("/customer-bike")
+                .post(getProperty("api", "customerBikeEndpoint"))
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_OK);
