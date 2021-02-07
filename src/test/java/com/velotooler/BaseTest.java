@@ -19,13 +19,13 @@ public abstract class BaseTest {
 
     protected DashboardPage dashboardPage;
 
-    @BeforeEach
+    //@BeforeEach
     public void logIn(TestInfo testInfo) {
         log.info(String.format("test started: %s ", testInfo.getTestMethod()));
         dashboardPage = new LogIn(DriverFactory.get()).logIn();
     }
 
-    @AfterEach
+    //@AfterEach
     public void logOut(TestInfo testInfo) {
         log.info(String.format("test finished: %s ", testInfo.getTestMethod()));
         dashboardPage.logOut();

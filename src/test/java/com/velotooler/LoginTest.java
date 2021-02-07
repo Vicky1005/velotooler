@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+   // @Test
     @Tag("smoke")
     public void loginIsSuccessful() {
         Auth auth = UserCreator.withCredentialsFromProperty();

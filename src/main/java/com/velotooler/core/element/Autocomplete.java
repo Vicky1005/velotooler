@@ -20,6 +20,7 @@ public class Autocomplete extends HtmlElement {
     }
 
     protected void selectValue(WebDriver driver, JavascriptExecutor jse, String xpath, String value) {
+        waitUntilElementDisplayed(driver, getWrappedElement());
         getWrappedElement().click();
         WebElement confirmElement = driver.findElement(By.xpath(String.format(xpath, value)));
         waitUntilElementDisplayed(driver, confirmElement);

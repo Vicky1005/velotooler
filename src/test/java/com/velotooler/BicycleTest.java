@@ -19,7 +19,7 @@ public class BicycleTest extends BaseTest {
     private CustomerBikeApi customerBikeApi = new CustomerBikeApi();
     private BikeRequest bicycleApiRequest = new JsonParser().get("customerBike", BikeRequest.class);
 
-    @Test
+   // @Test
     @Tag("smoke")
     public void bicycleIsCreated() {
         String sn = generateSn();
@@ -29,7 +29,7 @@ public class BicycleTest extends BaseTest {
         Assertions.assertEquals(sn, createdSerialNumber);
     }
 
-    @Test
+    //@Test
     @Tag("regression")
     public void bicycleIsDuplicated() {
         String sn = generateSn();
@@ -41,7 +41,7 @@ public class BicycleTest extends BaseTest {
                 bicycleInfoPage.getBicycleName());
     }
 
-    @Test
+    //@Test
     @Tag("regression")
     public void bicycleIsDeleted() {
         String sn = generateSn();
@@ -51,7 +51,7 @@ public class BicycleTest extends BaseTest {
         Assertions.assertTrue(dashboard.isParticularBicycleExist(sn));
     }
 
-    @Test
+    //@Test
     @Tag("regression")
     public void deleteAllBicycles() {
         DashboardPage dashboardPage = new DashboardPage(DriverFactory.get())
@@ -59,7 +59,7 @@ public class BicycleTest extends BaseTest {
         Assertions.assertFalse(dashboardPage.lastBicycleIsDisplayed());
     }
 
-    @Test
+    //@Test
     @Tag("regression")
     public void statusIsInUse() {
         String sn = generateSn();
@@ -73,7 +73,7 @@ public class BicycleTest extends BaseTest {
         Assertions.assertTrue(filterPage.isStatusInUse());
     }
 
-    @Test
+    //@Test
     @Tag("regression")
     public void isFilteredBySn() {
         String sn = generateSn();
