@@ -1,4 +1,4 @@
-package com.velotooler.api.bicycle.request;
+package com.velotooler.api.bicycle.customerBike;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.List;
 @JsonAutoDetect
 @ToString
 @Data
-public class BikeRequest {
+public class CustomerBikeRequest {
     private List<String> colors;
     private List<Components> components;
     private FixLocation fixLocation;

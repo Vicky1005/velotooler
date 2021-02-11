@@ -1,12 +1,12 @@
-package com.velotooler.api.bicycle.request;
+package com.velotooler.api.bicycle.customerBike;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
-import lombok.ToString;
 
 @JsonAutoDetect
 @Data
-@ToString
-public class FrameCondition {
+public class FrameConditionResponse {
     private Condition condition;
+    private boolean certified;
+
 }

@@ -1,6 +1,6 @@
 package com.velotooler.api.bicycle;
 
-import com.velotooler.api.bicycle.request.BikeRequest;
+import com.velotooler.api.bicycle.customerBike.CustomerBikeRequest;
 import com.velotooler.api.util.RequestSpec;
 import com.velotooler.core.parser.JsonParser;
 import io.restassured.RestAssured;
@@ -16,7 +16,7 @@ public class CustomerBikeApi {
     private RequestSpecification requestSpecification = RequestSpec.getInstance();
 
     public void createBicycle(String sn) {
-        BikeRequest bike = new JsonParser().get("customerBike", BikeRequest.class);
+        CustomerBikeRequest bike = new JsonParser().get("customerBike", CustomerBikeRequest.class);
         bike.setSerialNumber(sn);
         RestAssured.given(requestSpecification)
                 .body(bike)

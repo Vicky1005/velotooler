@@ -18,6 +18,8 @@ public class LoginApi {
 
         Auth auth = UserCreator.withCredentialsFromProperty();
 
+        log.info(auth.toString());
+
         RequestSpecification requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(getProperty("api", "baseUri"))
                 .setContentType("application/json")
@@ -31,7 +33,7 @@ public class LoginApi {
                 .extract();
 
         LoginResponse loginResponse = response.as(LoginResponse.class);
-        log.info("Api login with token is successful with user " + auth.getUsername());
+        log.info("Api login with token is successful with user " + auth.getUsername() + " " + loginResponse.getToken());
         return loginResponse.getToken();
     }
 

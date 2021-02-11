@@ -1,8 +1,6 @@
 package com.velotooler;
 
 import com.velotooler.core.driver.DriverFactory;
-import com.velotooler.core.parser.JsonParser;
-import com.velotooler.core.parser.Parser;
 import com.velotooler.pages.DashboardPage;
 import com.velotooler.steps.LogIn;
 import lombok.extern.slf4j.Slf4j;

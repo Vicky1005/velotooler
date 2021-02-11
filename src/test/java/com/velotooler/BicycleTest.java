@@ -1,7 +1,7 @@
 package com.velotooler;
 
 import com.velotooler.api.bicycle.CustomerBikeApi;
-import com.velotooler.api.bicycle.request.BikeRequest;
+import com.velotooler.api.bicycle.customerBike.CustomerBikeRequest;
 import com.velotooler.core.driver.DriverFactory;
 import com.velotooler.core.parser.JsonParser;
 import com.velotooler.pages.DashboardPage;
@@ -17,7 +17,7 @@ import static com.velotooler.core.util.SNGenerator.generateSn;
 public class BicycleTest extends BaseTest {
 
     private CustomerBikeApi customerBikeApi = new CustomerBikeApi();
-    private BikeRequest bicycleApiRequest = new JsonParser().get("customerBike", BikeRequest.class);
+    private CustomerBikeRequest bicycleApiRequest = new JsonParser().get("customerBike", CustomerBikeRequest.class);
 
     @Test
     @Tag("smoke")

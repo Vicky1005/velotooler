@@ -1,4 +1,4 @@
-package com.velotooler.api.bicycle.request;
+package com.velotooler.api.bicycle.customerBike;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
