@@ -5,7 +5,6 @@ import com.velotooler.api.bicycle.customerBike.CustomerBikeResponse;
 import com.velotooler.api.profile.currentProfile.CurrentProfileResponse;
 import com.velotooler.core.parser.JsonParser;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
@@ -26,7 +25,8 @@ public class BicycleApiTest extends BaseApiTest {
         CustomerBikeResponse response = RestAssured.given(requestSpecification)
                 .body(bike)
                 .post(getProperty("api", "customerBikeEndpoint"))
-                .then().statusCode(HttpStatus.SC_OK)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
                 .extract().as(CustomerBikeResponse.class);
         Assertions.assertEquals(sn, response.getSerialNumber());
     }
@@ -37,7 +37,6 @@ public class BicycleApiTest extends BaseApiTest {
         CurrentProfileResponse response = RestAssured.given(requestSpecification)
                 .get(getProperty("api", "currentProfileEndpoint"))
                 .then()
-                .assertThat().contentType(ContentType.JSON)
                 .statusCode(HttpStatus.SC_OK)
                 .extract().as(CurrentProfileResponse.class);
         Assertions.assertTrue(response.isActivated());
