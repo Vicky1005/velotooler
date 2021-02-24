@@ -8,7 +8,12 @@ import com.velotooler.pages.DashboardPage;
 import com.velotooler.pages.FilterPage;
 import com.velotooler.pages.bicycle.info.BicycleInfoPage;
 import com.velotooler.steps.BicycleCreation;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +26,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("smoke")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3463")
+    @DisplayName("Bicycle is created")
+    @Severity(SeverityLevel.NORMAL)
     public void bicycleIsCreated() {
         String sn = generateSn();
         String createdSerialNumber = new BicycleCreation(dashboardPage)
@@ -31,6 +40,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("regression")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3296")
+    @DisplayName("Bicycle is duplicated")
+    @Severity(SeverityLevel.NORMAL)
     public void bicycleIsDuplicated() {
         String sn = generateSn();
         customerBikeApi.createBicycle(sn);
@@ -43,6 +56,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("regression")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3296")
+    @DisplayName("Bicycle is deleted")
+    @Severity(SeverityLevel.MINOR)
     public void bicycleIsDeleted() {
         String sn = generateSn();
         customerBikeApi.createBicycle(sn);
@@ -53,6 +70,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("regression")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3463")
+    @DisplayName("Delete all bicycles")
+    @Severity(SeverityLevel.NORMAL)
     public void deleteAllBicycles() {
         DashboardPage dashboardPage = new DashboardPage(DriverFactory.get())
                 .deleteAllBicycles();
@@ -61,6 +82,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("regression")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3463")
+    @DisplayName("Check status is IN USE")
+    @Severity(SeverityLevel.TRIVIAL)
     public void statusIsInUse() {
         String sn = generateSn();
         customerBikeApi.createBicycle(sn);
@@ -75,6 +100,10 @@ public class BicycleTest extends BaseTest {
 
     @Test
     @Tag("regression")
+    @Epic("IAMAPPS-2222")
+    @Story("IAMAPPS-3296")
+    @DisplayName("Bicycle is filtered by serial number")
+    @Severity(SeverityLevel.TRIVIAL)
     public void isFilteredBySn() {
         String sn = generateSn();
         customerBikeApi.createBicycle(sn);

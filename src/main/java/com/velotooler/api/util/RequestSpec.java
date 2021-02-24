@@ -1,6 +1,7 @@
 package com.velotooler.api.util;
 
 import com.velotooler.api.auth.LoginApi;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
@@ -18,6 +19,7 @@ public class RequestSpec {
                 .setBaseUri(getProperty("api", "baseUri"))
                 .setAccept("application/json")
                 .setContentType("application/json")
+                .addFilter(new AllureRestAssured())
                 .addHeader("x-token", token)
                 .build();
     }

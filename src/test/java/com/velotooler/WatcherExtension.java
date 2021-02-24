@@ -1,6 +1,8 @@
 package com.velotooler;
 
 import com.velotooler.core.driver.DriverFactory;
+import io.qameta.allure.Attachment;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.extension.*;
@@ -60,7 +62,9 @@ public class WatcherExtension implements BeforeTestExecutionCallback, AfterTestE
         driver = null;
     }
 
-    private void takeScreenshot(String testName) {
+    @SneakyThrows
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] takeScreenshot(String testName) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) DriverFactory.get();
         File screenCapture = takesScreenshot.getScreenshotAs(OutputType.FILE);
         try {
@@ -71,6 +75,7 @@ public class WatcherExtension implements BeforeTestExecutionCallback, AfterTestE
         } catch (IOException e) {
             log.error("Failed to save screenshot: " + e.getLocalizedMessage());
         }
+        return FileUtils.readFileToByteArray(screenCapture);
     }
 
     private String getCurrentTimeAsString() {
